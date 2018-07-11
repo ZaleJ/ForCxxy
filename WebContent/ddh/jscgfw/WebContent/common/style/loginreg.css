@@ -1,0 +1,22 @@
+/* CSS Document */
+html{ background:#113f5e url(../images/reg_bg.gif); color:#fff;}
+.reg_top{ background:#1a5075 url(../images/reg_topbg.gif); height:225px;}
+.reg_logo{ width:348px; margin-top:70px; height:80px; margin-left:auto; margin-right:auto; background:url(../images/reg_logo.png) center center no-repeat}
+.reg_logo a{ display:block; height:64px; overflow:hidden;}
+.reg_i{ position:absolute; top:82px; left:50%; margin-left:100px; line-height:36px; width:65px; height:47px; background:url(../images/reg_i.png) no-repeat; color:#fff; font-size:14px; text-align:center; display:inline-block;}
+.reg_top h1{ text-align:center; font-size:30px; font-weight:normal; font-family:"微软雅黑","黑体"; line-height:30px;}
+.login_btn{ font-size:16px; background:#a1c01a url(../images/green_btn.gif) repeat-x; height:36px; color:#fff;}
+.login_btn:hover{ background:#a1c01a url(../images/green_btn2.gif) repeat-x;}
+a.c_fff:hover{ color:#a3c51a;}
+
+label.error{ line-height:34px; margin-left:10px; padding-top:2px; color:#FFCC00; font-size:12px;}
+input.error{ border:1px #FF9900 solid; background:#FFFFCC;color:#f00;}
+.form_e{ text-align:left; height:38px;}
+
+.reg_body{ margin-bottom:40px;}
+
+.jingli_list{ margin-left:auto; padding-top:20px; margin-right:auto; width:400px; background:#fff; border-radius:4px;  font-size:16px;}
+.jingli_list li a{ display:block; padding-left:20px;}
+.jingli_list  ul{ margin-left:20px; margin-right:20px; border:1px #CCCCCC solid; margin-bottom:20px;}
+.jingli_list li{ border-bottom:1px #ccc solid;line-height:46px;}
+.jingli_list li:last-child{ border:none;}

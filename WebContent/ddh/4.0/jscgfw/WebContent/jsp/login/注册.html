@@ -1,0 +1,51 @@
+    <!DOCTYPE html>  
+    <html>  
+    <head>  
+    <meta charset="UTF-8">  
+    <title>用户登陆</title>  
+    <style type="text/css">  
+        html{font-size:12px;}  
+        div{bgcolor:#ccffcc;}  
+        fieldset{width:520px;margin:0 auto;}  
+        legend{font-weight:bold;font-size:14px;}  
+        label{float:left;width:70px;margin-left:10px;}  
+        .left{margin-left:80px;}  
+        .input{width:150px;}  
+        span{color:#666666;}  
+        p   
+    </style>  
+    <script>  
+        function InputCheck(LoginForm){  
+            if(LoginForm.username.value == ""){  
+                alert("请输入用户名！");  
+                LoginForm.username.focus();  
+                return false;  
+            }  
+            if(LoginForm.password.value == ""){  
+                alert("请输入密码！");  
+                LoginForm.password.focus();  
+                return false;  
+            }  
+        }  
+    </script>  
+    </head>  
+    <body>  
+    <div>  
+        <fieldset>  
+            <legend>用户注册</legend>  
+            <form name="LoginForm" method="post" action="teacher_login_signup/signup.jsp" onSubmit="return InputCheck(this)">  
+            <p>  
+            <label for="username" class="label">用户名：</label>  
+            <input id="gonghao" name="gonghao" type="text" class="input" />  
+            </p>  
+            <p>  
+            <label for="password" class="label">密  码：</label>  
+            <input id="inkey" name="inkey" type="password" class="input" />  
+            <input type="submit" name="submit" value="注册" class="left" /> <br> <a href="login.jsp">登录</a>  
+            
+            </p>  
+            </form>  
+        </fieldset>  
+    </div>  
+    </body>  
+    </html>  
