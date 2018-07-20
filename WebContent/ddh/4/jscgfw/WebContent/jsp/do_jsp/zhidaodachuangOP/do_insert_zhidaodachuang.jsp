@@ -67,7 +67,7 @@
 
 		ps.executeUpdate();
 
-		String ins_sql2 = "INSERT INTO zhidaodachuang VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String ins_sql2 = "INSERT INTO zhidaodachuang VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement ps2 = null;
 		ps2 = con.prepareStatement(ins_sql2);
 		ps2.setString(1, xiangmumingcheng);
@@ -105,6 +105,8 @@
 		
 		
 		
+		
+		ps2.setString(15, Gonghao);
 		ps2.executeUpdate();
 %>
 

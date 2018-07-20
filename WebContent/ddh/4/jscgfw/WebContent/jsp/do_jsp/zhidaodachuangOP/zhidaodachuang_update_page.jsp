@@ -82,11 +82,11 @@
 										try {
 
 											String Xuenian = (String) session.getAttribute("xuenian");
-											String ketimingcheng = request.getParameter("p");
-											String sea_sql = "select * from zhidaodachuang  where xiangmumingcheng=? ";
+											String ketangID = request.getParameter("p");
+											String sea_sql = "select * from zhidaodachuang  where ID=? ";
 
 											ps = con.prepareStatement(sea_sql);
-											ps.setString(1, ketimingcheng);
+											ps.setString(1, ketangID);
 											rs = ps.executeQuery();
 
 											// 	out.println(Gonghao);

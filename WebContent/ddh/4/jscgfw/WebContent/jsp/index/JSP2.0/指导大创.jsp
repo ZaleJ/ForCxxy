@@ -100,7 +100,7 @@
 
 																	<thead>
 																		<tr>
-
+																			<th class="text-center">项目ID</th>
 																			<th class="text-center">项目名称</th>
 																			<th class="text-center">项目级别</th>
 																			<th class="text-center">选题来源</th>
@@ -154,7 +154,7 @@
 																		}
 																		//  
 
-																		int pa = 2;
+																		int pa = 3;
 																		String paa = null;
 																		paa = request.getParameter("pa");
 																		if (paa != null) {
@@ -184,10 +184,10 @@
 																			}
 
 																			String sel_co_sql = "SELECT top " + $pagesize
-																					+ " xiangmumingcheng  FROM co_jbqk_zhidaodachuang WHERE gonghao=? and ID NOT IN(select top "
-																					+ $jump + " ID FROM co_jbqk_zhidaodachuang WHERE gonghao=" + Gonghao + ")  ";
+																					+ " xiangmuID  FROM co_jbqk_zhidaodachuang WHERE gonghao=? and xiangmuID NOT IN(select top "
+																					+ $jump + " xiangmuID FROM co_jbqk_zhidaodachuang WHERE gonghao=" + Gonghao + ")  ";
 
-																			String sel_ketang_sql = "SELECT *  FROM zhidaodachuang WHERE xiangmumingcheng=? ";
+																			String sel_ketang_sql = "SELECT *  FROM zhidaodachuang WHERE ID=? ";
 
 																			if (time2 == null) {
 																				co_ps = con.prepareStatement(sel_co_sql);
@@ -199,9 +199,9 @@
 																				ss = "'" + time2 + "-" + timenum + "学年'";//2017-2018学年
 
 																				String sel_co_sql2 = "SELECT top " + $pagesize
-																						+ " xiangmumingcheng  FROM co_jbqk_zhidaodachuang WHERE gonghao=" + Gonghao
-																						+ " and xuenian=" + ss + " and ID NOT IN(select top " + $jump
-																						+ " ID FROM co_jbqk_zhidaodachuang WHERE gonghao=" + Gonghao + ")  ";
+																						+ " xiangmuID  FROM co_jbqk_zhidaodachuang WHERE gonghao=" + Gonghao
+																						+ " and xuenian=" + ss + " and xiangmuID NOT IN(select top " + $jump
+																						+ " xiangmuID FROM co_jbqk_zhidaodachuang WHERE gonghao=" + Gonghao + ")  ";
 																				String sel_co_sql3 = "SELECT xiangmumingcheng  FROM co_jbqk_zhidaodachuang WHERE gonghao='"
 																						+ Gonghao + "' and   xuenian=" + ss + "  ";
 																				co_ps = con.prepareStatement(sel_co_sql3);
@@ -211,13 +211,14 @@
 
 																			while (co_rs.next()) {
 
-																				String xiangmumingcheng = co_rs.getString("xiangmumingcheng");
+																				String xiangmuID = co_rs.getString("xiangmuID");
 																				//String xuenian=co_rs.getString("xuenian");
 																				ketang_ps = con.prepareStatement(sel_ketang_sql);
-																				ketang_ps.setString(1, xiangmumingcheng);
+																				ketang_ps.setString(1, xiangmuID);
 																				ketang_rs = ketang_ps.executeQuery();
 																				while (ketang_rs.next()) {
-
+																					String xiangmumingcheng = ketang_rs.getString("xiangmumingcheng");
+	
 																					String xiangmujibie = ketang_rs.getString("xiangmujibie");
 																					String xuantilaiyuan = ketang_rs.getString("xuantilaiyuan");
 																					String xiangmuzhuangkuang = ketang_rs.getString("xiangmuzhuangkuang");
@@ -235,6 +236,7 @@
 																	<form id='ketang_ID' method='post'>
 																		<tbody>
 																			<tr>
+																			<td class="text-center"><%=xiangmuID%></td>
 																				<td class="text-center"><%=xiangmumingcheng%></td>
 																				<td class="text-center"><%=xiangmujibie%></td>
 																				<td class="text-center"><%=xuantilaiyuan%></td>
@@ -253,9 +255,9 @@
 																				<td class="text-center"><%=shenheqingkuang%></td>
 																				<td class="text-center"><%=fufen%></td>
 																				<td class="text-center"><nter"> <a
-																						href="../../do_jsp/zhidaodachuangOP/zhidaodachuang_update_page.jsp?p=<%=xiangmumingcheng%>">更新</a>||<a
+																						href="../../do_jsp/zhidaodachuangOP/zhidaodachuang_update_page.jsp?p=<%=xiangmuID%>">更新</a>||<a
 																						class="del"
-																						href="../../do_jsp/zhidaodachuangOP/do_delet_zhidaodachuang.jsp?p=<%=xiangmumingcheng%>">删除</a></td>
+																						href="../../do_jsp/zhidaodachuangOP/do_delet_zhidaodachuang.jsp?p=<%=xiangmuID%>">删除</a></td>
 
 
 
@@ -285,19 +287,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 																	<!--翻页-->
 																	<form
 																		action="../../do_jsp/zhidaodachuangOP/do_insert_zhidaodachuang.jsp"
@@ -305,7 +294,7 @@
 																		<tbody id="yingsheng" style="display: none">
 
 																			<tr>
-
+																				<td class="text-center">不可填</td>
 																				<td class="text-center"><input
 																					style="border: 0; background-color: #F9F9F9"
 																					type="text" size=3 name="xiangmumingcheng"></td>
@@ -366,9 +355,8 @@
 																				<td class="text-center"><input
 																					style="border: 0; background-color: #F9F9F9"
 																					type="text" size=3 name="beizhu"></td>
-																					
-																					<td class="text-center">
-																					<select
+
+																				<td class="text-center"><select
 																					name='zhidaojiaoshirenshu'>
 																						<option value="1">1</option>
 																						<option value="2">2</option>
@@ -380,33 +368,27 @@
 																						<option value="8">8</option>
 																						<option value="9">9</option>
 																						<option value="10">10</option>
-																					</select>
-																					
-																					</td>
-																					
-																					
-																					<td class="text-center">
-																						<select
+																				</select></td>
+
+
+																				<td class="text-center"><select
 																					name='zhidaojiaoshijibie'>
 																						<option value="项目负责人">项目负责人</option>
 																						<option value="主要贡献者">主要贡献者</option>
 																						<option value="参与者">参与者</option>
-																					</select>
-																					
-																					</td>
-																					
-																					
-																					
+																				</select></td>
+
+
+
 
 																				<td class="text-center"><select id="sel3"
 																					name='time2'></td>
 																				<td class="text-center"><input
 																					style="border: 0; background-color: #F9F9F9"
 																					type="text" size=3 name="jietishijian_y"></td>
-																					
-<!-- 																					赋分分值 -->
-																				<td class="text-center">
-																				</td>
+
+																				<!-- 																					赋分分值 -->
+																				<td class="text-center"></td>
 																				<!-- 审核情况 -->
 																				<td class="text-center"><input type="submit"
 																					value="确认添加"
@@ -596,7 +578,7 @@
 
 
 
-										总分：<%=ss %>
+										总分：<%=ss%>
 										<br />
 								</body>
 </html>
