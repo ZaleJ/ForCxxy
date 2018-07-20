@@ -39,7 +39,8 @@
    		
 %>
 <%
-	String ins_sql = "INSERT INTO co_jbqk_zhidaodachuang VALUES(?,?,?)";
+//  update1 取消关联表，工号直接挂载数据表
+// 	String ins_sql = "INSERT INTO co_jbqk_zhidaodachuang VALUES(?,?,?)";
 
 
 	String sel_fufen_sql = "select *  from Manager_Table";
@@ -60,12 +61,13 @@
 		// 		int timenum = Integer.parseInt(time2) + 1; 
 		String ss = Xuenian;//2017-2018学年
 
-		ps = con.prepareStatement(ins_sql);
-		ps.setString(1, Gonghao);
-		ps.setString(2, xiangmumingcheng);
-		ps.setString(3, ss);
+	//  update1 取消关联表，工号直接挂载数据表
+// 		ps = con.prepareStatement(ins_sql);
+// 		ps.setString(1, Gonghao);
+// 		ps.setString(2, xiangmumingcheng);
+// 		ps.setString(3, ss);
 
-		ps.executeUpdate();
+// 		ps.executeUpdate();
 
 		String ins_sql2 = "INSERT INTO zhidaodachuang VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement ps2 = null;
