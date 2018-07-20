@@ -39,8 +39,7 @@
    		
 %>
 <%
-//  update1 取消关联表，工号直接挂载数据表
-// 	String ins_sql = "INSERT INTO co_jbqk_zhidaodachuang VALUES(?,?,?)";
+	
 
 
 	String sel_fufen_sql = "select *  from Manager_Table";
@@ -61,13 +60,7 @@
 		// 		int timenum = Integer.parseInt(time2) + 1; 
 		String ss = Xuenian;//2017-2018学年
 
-	//  update1 取消关联表，工号直接挂载数据表
-// 		ps = con.prepareStatement(ins_sql);
-// 		ps.setString(1, Gonghao);
-// 		ps.setString(2, xiangmumingcheng);
-// 		ps.setString(3, ss);
-
-// 		ps.executeUpdate();
+		
 
 		String ins_sql2 = "INSERT INTO zhidaodachuang VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement ps2 = null;
@@ -110,6 +103,35 @@
 		
 		ps2.setString(15, Gonghao);
 		ps2.executeUpdate();
+		
+		
+		
+		String xiangmuID = null;
+		String sel_co_sql = "select ID  from zhidaodachuang where gonghao=? and xiangmumingcheng=?";
+		PreparedStatement co_ps = con.prepareStatement(sel_co_sql);
+		co_ps.setString(1, Gonghao);
+		co_ps.setString(2, xiangmumingcheng);
+		ResultSet co_rs = co_ps.executeQuery();
+		while (co_rs.next()) {
+			xiangmuID = co_rs.getString("ID");
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		String ins_sql = "INSERT INTO co_jbqk_zhidaodachuang VALUES(?,?,?)";
+		ps = con.prepareStatement(ins_sql);
+		ps.setString(1, Gonghao);
+		ps.setString(2, xiangmuID);
+		ps.setString(3, ss);
+
+		ps.executeUpdate();
+		
+		
 %>
 
 <meta http-equiv='refresh' content='1;../../index/jsp/指导大创.jsp' />
