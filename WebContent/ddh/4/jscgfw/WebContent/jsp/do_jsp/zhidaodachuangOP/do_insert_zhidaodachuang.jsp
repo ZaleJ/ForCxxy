@@ -81,20 +81,31 @@
 		ps2.setString(12, ss);
 		ps2.setString(13, "未审核");
 		
-		
+		String fufenString = "0";
 		if(xiangmujibie.equals("省级") && jietidengji.equals("优秀")){
-			ps2.setString(14, Province2);
+// 			ps2.setString(14, Province2);
+		fufenString = Province2;
 		}else if(xiangmujibie.equals("省级") && (jietidengji.equals("良好") || jietidengji.equals("中等"))){
-			ps2.setString(14, Province3);
+// 			ps2.setString(14, Province3);
+			fufenString = Province3;
 		}else if(xiangmujibie.equals("院级") && jietidengji.equals("优秀")){
-			ps2.setString(14, College2);
+// 			ps2.setString(14, College2);
+			fufenString = College2;
 		}else if(xiangmujibie.equals("院级") && (jietidengji.equals("良好") || jietidengji.equals("中等"))){
-			ps2.setString(14, College3);
+// 			ps2.setString(14, College3);
+			fufenString = College3;
 		}else{
-			ps2.setString(14, "0");
 		}
 		
-		
+		if(Integer.parseInt(zhidaojiaoshirenshu)>1){
+				double M = Double.parseDouble(zhidaojiaoshirenshu);
+			if("项目负责人".equals(zhidaojiaoshijibie) || "主要贡献者".equals(zhidaojiaoshijibie)){
+				fufenString = Double.toString(2.00/M*Double.parseDouble(fufenString));
+			}else{
+				fufenString = Double.toString(1.00/M*Double.parseDouble(fufenString));
+			}
+		}
+			ps2.setString(14, fufenString);
 		
 		
 		
