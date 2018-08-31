@@ -14,8 +14,8 @@ try
 
    String ketimingcheng=request.getParameter("p");
    String Gonghao=(String)session.getAttribute("gonghao");
-   String ins_sql = "DELETE FROM zhidaojingsai WHERE jingsaimingcheng=?";
-   String ins_sql2 = "DELETE FROM co_jbqk_zhidaojingsai WHERE jingsaimingcheng=? and gonghao=? ";
+   String ins_sql = "DELETE FROM zhidaojingsai WHERE ID=?";
+   String ins_sql2 = "DELETE FROM co_jbqk_zhidaojingsai WHERE xiangmuID=? and gonghao=? ";
   
    PreparedStatement ps2 = null;	
  
@@ -33,7 +33,7 @@ try
 
  %>
  
-   <meta http-equiv='refresh'  content='1;../../index/jsp/指导竞赛.jsp'  class="del" />
+   <meta http-equiv='refresh'  content='1;../../index/JSP2.0/指导竞赛.jsp'  class="del" />
 
  
  <%  }  

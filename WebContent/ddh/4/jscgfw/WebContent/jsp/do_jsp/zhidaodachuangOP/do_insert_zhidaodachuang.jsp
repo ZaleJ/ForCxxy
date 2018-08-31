@@ -145,7 +145,7 @@
 		
 %>
 
-<meta http-equiv='refresh' content='1;../../index/jsp/指导大创.jsp' />
+<meta http-equiv='refresh' content='1;../../index/JSP2.0/指导大创.jsp' />
 
 
 <%

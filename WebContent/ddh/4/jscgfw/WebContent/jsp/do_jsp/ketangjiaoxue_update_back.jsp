@@ -76,7 +76,7 @@ ps.setInt(6,Integer.parseInt(shoukebangeshu));
   	
 %>
 
-<meta http-equiv='refresh'  content='1;../../index/jsp/jibenxingxi.jsp'/>
+<meta http-equiv='refresh'  content='1;../../jsp/index/jsp/ketangjiaoxue.jsp'/>
 <%
 } 
 

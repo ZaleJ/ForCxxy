@@ -156,7 +156,7 @@
 				       
 				   
 	           
-  int  pa=2;String paa =null;
+  int  pa=4;String paa =null;
   paa=request.getParameter("pa");
 if(paa!=null){  pa=Integer.parseInt(request.getParameter("pa"));}
     int $pagesize = pa; //每页显示8条主录

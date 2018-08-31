@@ -81,7 +81,7 @@
      the only difference between the two is the stylesheet they use -->
 								<body>
 									<div class="manage_right cl">
-										<h1 class="sub_title">带实习</h1>
+										<h1 class="sub_title">实习指导</h1>
 										<div class="manage_right_c">
 
 											<table border="0" cellspacing="0" cellpadding="0"
@@ -101,7 +101,7 @@
 																	<thead>
 																		<tr>
 
-																			<th class="text-center">实习名称</th>
+																			<th class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;实习名称&nbsp;&nbsp;&nbsp;&nbsp;</th>
 																			<th class="text-center">学分</th>
 																			<th class="text-center">时长</th>
 																			<th class="text-center">学生人数</th>
@@ -298,7 +298,7 @@
 
 																				<td class="text-center"><input
 																					style="border: 0; background-color: #F9F9F9"
-																					type="text" size=3 name="shiximingcheng"></td>
+																					type="text" size=12 name="shiximingcheng"></td>
 																				<td class="text-center"><input
 																					style="border: 0; background-color: #F9F9F9"
 																					type="text" size=3 name="xuefen"></td>

@@ -100,14 +100,16 @@
 
 																	<thead>
 																		<tr>
-
+																			<th class="text-center">项目ID</th>
 																			<th class="text-center">竞赛名称</th>
 																			<th class="text-center">竞赛级别</th>
 																			<th class="text-center">获奖情况</th>
 																			<th class="text-center">指导形式</th>
+																			<th class="text-center">指导教师人数</th>
 																			<td class="text-center">备注</td>
 																			<td class="text-center">学年</td>
 																			<th class="text-center">审核情况</th>
+																			<th class="text-center">赋分分值</th>
 																			<th class="text-center">操作</th>
 
 
@@ -177,10 +179,10 @@
 																			}
 
 																			String sel_co_sql = "SELECT top " + $pagesize
-																					+ " jingsaimingcheng  FROM co_jbqk_zhidaojingsai WHERE gonghao=? and ID NOT IN(select top "
+																					+ " xiangmuID  FROM co_jbqk_zhidaojingsai WHERE gonghao=? and ID NOT IN(select top "
 																					+ $jump + " ID FROM co_jbqk_zhidaojingsai WHERE gonghao=" + Gonghao + ")  ";
 
-																			String sel_ketang_sql = "SELECT *  FROM zhidaojingsai WHERE jingsaimingcheng=? ";
+																			String sel_ketang_sql = "SELECT *  FROM zhidaojingsai WHERE ID=? ";
 
 																			if (time2 == null) {
 																				co_ps = con.prepareStatement(sel_co_sql);
@@ -192,11 +194,11 @@
 																				ss = "'" + time2 + "-" + timenum + "学年'";//2017-2018学年
 
 																				String sel_co_sql2 = "SELECT top " + $pagesize
-																						+ " jingsaimingcheng  FROM co_jbqk_zhidaojingsai WHERE gonghao=" + Gonghao + " and xuenian="
-																						+ ss + " and ID NOT IN(select top " + $jump
-																						+ " ID FROM co_jbqk_zhidaojingsai WHERE gonghao=" + Gonghao + ")  ";
-																				String sel_co_sql3 = "SELECT jingsaimingcheng  FROM co_jbqk_zhidaojingsai WHERE gonghao='" + Gonghao
-																						+ "' and   xuenian=" + ss + "  ";
+																						+ " xiangmuID  FROM co_jbqk_zhidaojingsai WHERE gonghao=" + Gonghao
+																						+ " and xuenian=" + ss + " and xiangmuID NOT IN(select top " + $jump
+																						+ " xiangmuID FROM co_jbqk_zhidaojingsai WHERE gonghao=" + Gonghao + ")  ";
+																				String sel_co_sql3 = "SELECT xiangmumingcheng  FROM co_jbqk_zhidaojingsai WHERE gonghao='"
+																						+ Gonghao + "' and   xuenian=" + ss + "  ";
 																				co_ps = con.prepareStatement(sel_co_sql3);
 
 																			}
@@ -204,37 +206,53 @@
 
 																			while (co_rs.next()) {
 
-																				String jingsaimingcheng = co_rs.getString("jingsaimingcheng");
+																				String xiangmuID = co_rs.getString("xiangmuID");
 																				//String xuenian=co_rs.getString("xuenian");
 																				ketang_ps = con.prepareStatement(sel_ketang_sql);
-																				ketang_ps.setString(1, jingsaimingcheng);
+																				ketang_ps.setString(1, xiangmuID);
 																				ketang_rs = ketang_ps.executeQuery();
 																				while (ketang_rs.next()) {
-
+																					String jingsaimingcheng = ketang_rs.getString("jingsaimingcheng");
+																					
 																					String jingsaijibie = ketang_rs.getString("jingsaijibie");
-																					String huojiangqingkuang = ketang_rs.getString("huojiangqingkuang");
+// 																					String huojiangqingkuang = ketang_rs.getString("huojiangqingkuang");
+																					String tedengjiangrenshu = ketang_rs.getString("tedengjiangrenshu");
+																					String yidengjiangrenshu = ketang_rs.getString("yidengjiangrenshu");
+																					String erdengjiangrenshu = ketang_rs.getString("erdengjiangrenshu");
+																					String sandengjiangrenshu = ketang_rs.getString("sandengjiangrenshu");
+																					String youxiujiangrenshu = ketang_rs.getString("youxiujiangrenshu");
 																					String zhidaoxingshi = ketang_rs.getString("zhidaoxingshi");
+																					String zhidaojiaoshirenshu = ketang_rs.getString("zhidaojiaoshirenshu");
 																					String beizhu = ketang_rs.getString("beizhu");
 																					String xuenian = ketang_rs.getString("xuenian");
+																					String fufen = ketang_rs.getString("fufen");
 																					String shenheqingkuang = ketang_rs.getString("shenheqingkuang");
 																	%>
 																	<form id='ketang_ID' method='post'>
 																		<tbody>
 																			<tr>
+																			<td class="text-center"><%=xiangmuID%></td>
 																				<td class="text-center"><%=jingsaimingcheng%></td>
 																				<td class="text-center"><%=jingsaijibie%></td>
-																				<td class="text-center"><%=huojiangqingkuang%></td>
+																				<td class="text-center">特等奖：<%=tedengjiangrenshu%>人<br/>
+																															一等奖：<%=yidengjiangrenshu%>人<br/>
+																															二等奖：<%=erdengjiangrenshu%>人<br/>
+																															三等奖：<%=sandengjiangrenshu%>人<br/>
+																															优秀奖：<%=youxiujiangrenshu%>人
+																				</td>
 
 																				<td class="text-center"><%=zhidaoxingshi%></td>
+																				<td class="text-center"><%=zhidaojiaoshirenshu%></td>
 
 																				<td class="text-center"><%=beizhu%></td>
 																				<td class="text-center"><%=xuenian%></td>
 																				<td class="text-center"><%=shenheqingkuang%></td>
+																				<td class="text-center"><%=fufen%></td>
 																				<td class="text-center"><nter">
 																					<a
-																						href="../../do_jsp/zhidaojingsaiOP/zhidaojingsai_update_page.jsp?p=<%=jingsaimingcheng%>">更新</a>||<a
+																						href="../../do_jsp/zhidaojingsaiOP/zhidaojingsai_update_page.jsp?p=<%=xiangmuID%>">更新</a>||<a
 																						class="del"
-																						href="../../do_jsp/zhidaojingsaiOP/do_delet_zhidaojingsai.jsp?p=<%=jingsaimingcheng%>">删除</a></td>
+																						href="../../do_jsp/zhidaojingsaiOP/do_delet_zhidaojingsai.jsp?p=<%=xiangmuID%>">删除</a></td>
 
 
 
@@ -284,7 +302,9 @@
 																		<tbody id="yingsheng" style="display: none">
 
 																			<tr>
-
+																				<td class="text-center">不可填</td>
+																					
+																					
 																				<td class="text-center"><input
 																					style="border: 0; background-color: #F9F9F9"
 																					type="text" size=3 name="jingsaimingcheng"></td>
@@ -293,23 +313,148 @@
 <!-- 																					type="text" size=3 name="jingsaijibie"></td> -->
 																				<td class="text-center"><select
 																					name='jingsaijibie'>
+																					<option value="国际">国际</option>
 																						<option value="全国">全国</option>
 																						<option value="大区">大区</option>
 																						<option value="省级">省级</option>
+																						<option value="省级">市级</option>
 																						<option value="院级">院级</option>
 																						<option value="系级">系级</option>
 </select></td>
 <!-- 																				<td class="text-center"><input -->
 <!-- 																					style="border: 0; background-color: #F9F9F9" -->
 <!-- 																					type="text" size=3 name="huojiangqingkuang"></td> -->
-																				<td class="text-center"><select
-																					name='huojiangqingkuang'>
-																						<option value="特等奖">特等奖</option>
-																						<option value="一等奖">一等奖</option>
-																						<option value="二等奖">二等奖</option>
-																						<option value="三等奖">三等奖</option>
-																						<option value="优秀奖">优秀奖</option>
-																						</select></td>
+																				<td class="text-center">
+<!-- 																				<select -->
+<!-- 																					name='huojiangqingkuang'> -->
+<!-- 																						<option value="特等奖">特等奖</option> -->
+<!-- 																						<option value="一等奖">一等奖</option> -->
+<!-- 																						<option value="二等奖">二等奖</option> -->
+<!-- 																						<option value="三等奖">三等奖</option> -->
+<!-- 																						<option value="优秀奖">优秀奖</option> -->
+<!-- 																						</select> -->
+																						特等奖人数：
+																					<select
+																					name='tedengjiangrenshu'>
+																						<option value="0">0</option>
+																						<option value="1">1</option>
+																						<option value="2">2</option>
+																						<option value="3">3</option>
+																						<option value="4">4</option>
+																						<option value="5">5</option>
+																						<option value="6">6</option>
+																						<option value="7">7</option>
+																						<option value="8">8</option>
+																						<option value="9">9</option>
+																						<option value="10">10</option>
+																						<option value="11">11</option>
+																						<option value="12">12</option>
+																						<option value="13">13</option>
+																						<option value="14">14</option>
+																						<option value="15">15</option>
+																						<option value="16">16</option>
+																						
+																						</select>
+																						<br />
+																						
+																						一等奖人数：
+																					<select
+																					name='yidengjiangrenshu'>
+																						<option value="0">0</option>
+																						<option value="1">1</option>
+																						<option value="2">2</option>
+																						<option value="3">3</option>
+																						<option value="4">4</option>
+																						<option value="5">5</option>
+																						<option value="6">6</option>
+																						<option value="7">7</option>
+																						<option value="8">8</option>
+																						<option value="9">9</option>
+																						<option value="10">10</option>
+																						<option value="11">11</option>
+																						<option value="12">12</option>
+																						<option value="13">13</option>
+																						<option value="14">14</option>
+																						<option value="15">15</option>
+																						<option value="16">16</option>
+																						
+																						</select>
+																						<br />
+																						
+																						二等奖人数：
+																					<select
+																					name='erdengjiangrenshu'>
+																						<option value="0">0</option>
+																						<option value="1">1</option>
+																						<option value="2">2</option>
+																						<option value="3">3</option>
+																						<option value="4">4</option>
+																						<option value="5">5</option>
+																						<option value="6">6</option>
+																						<option value="7">7</option>
+																						<option value="8">8</option>
+																						<option value="9">9</option>
+																						<option value="10">10</option>
+																						<option value="11">11</option>
+																						<option value="12">12</option>
+																						<option value="13">13</option>
+																						<option value="14">14</option>
+																						<option value="15">15</option>
+																						<option value="16">16</option>
+																						
+																						</select>
+																						<br />
+																						
+																							三等奖人数：
+																					<select
+																					name='sandengjiangrenshu'>
+																						<option value="0">0</option>
+																						<option value="1">1</option>
+																						<option value="2">2</option>
+																						<option value="3">3</option>
+																						<option value="4">4</option>
+																						<option value="5">5</option>
+																						<option value="6">6</option>
+																						<option value="7">7</option>
+																						<option value="8">8</option>
+																						<option value="9">9</option>
+																						<option value="10">10</option>
+																						<option value="11">11</option>
+																						<option value="12">12</option>
+																						<option value="13">13</option>
+																						<option value="14">14</option>
+																						<option value="15">15</option>
+																						<option value="16">16</option>
+																						
+																						</select>
+																						<br />
+																						
+																								优秀奖人数：
+																					<select
+																					name='youxiujiangrenshu'>
+																						<option value="0">0</option>
+																						<option value="1">1</option>
+																						<option value="2">2</option>
+																						<option value="3">3</option>
+																						<option value="4">4</option>
+																						<option value="5">5</option>
+																						<option value="6">6</option>
+																						<option value="7">7</option>
+																						<option value="8">8</option>
+																						<option value="9">9</option>
+																						<option value="10">10</option>
+																						<option value="11">11</option>
+																						<option value="12">12</option>
+																						<option value="13">13</option>
+																						<option value="14">14</option>
+																						<option value="15">15</option>
+																						<option value="16">16</option>
+																						
+																						</select>
+																						<br />
+																						
+																						
+																						</td>
 																						
 <!-- 																				<td class="text-center"><input -->
 <!-- 																					style="border: 0; background-color: #F9F9F9" -->
@@ -322,22 +467,45 @@
 																						<option value="培训指导">培训指导</option>
 																						<option value="组织管理">组织管理</option>
 																						</select></td>
+																						
+																						<td class="text-center"><select
+																					name='zhidaojiaoshirenshu'>
+																						
+																						<option value="1">1</option>
+																						<option value="2">2</option>
+																						<option value="3">3</option>
+																						<option value="4">4</option>
+																						<option value="5">5</option>
+																						<option value="6">6</option>
+																						<option value="7">7</option>
+																						<option value="8">8</option>
+																						<option value="9">9</option>
+																						<option value="10">10</option>
+																						<option value="11">11</option>
+																						<option value="12">12</option>
+																						<option value="13">13</option>
+																						<option value="14">14</option>
+																						<option value="15">15</option>
+																						<option value="16">16</option>
+																						
+																						</select></td>
 
 <!-- 																				<td class="text-center"><input -->
 <!-- 																					style="border: 0; background-color: #F9F9F9" -->
 <!-- 																					type="text" size=3 name="beizhu"></td> -->
 																				<td class="text-center"><select
 																					name='beizhu'>
-																						<option value="第一指导">首次参赛</option>
-																						<option value="第二指导">零的突破</option>
-																						<option value="参与指导">好于往年</option>
+																						<option value="首次参赛">首次参赛</option>
+																						<option value="零的突破">零的突破</option>
+																						<option value="好于往年">好于往年</option>
 																						</select></td>
 																				<td class="text-center"><select id="sel3"
 																					name='time2'></td>
+																				<!-- 审核情况 -->
 																				<td class="text-center"><input
 																					style="border: 0; background-color: #F9F9F9"
 																					type="text" size=3 name="jietishijian_y"></td>
-																				<!-- 审核情况 -->
+																					<td class="text-center"></td>
 																				<td class="text-center"><input type="submit"
 																					value="确认添加"
 																					class="btn btn-primary login__input pass"></td>
