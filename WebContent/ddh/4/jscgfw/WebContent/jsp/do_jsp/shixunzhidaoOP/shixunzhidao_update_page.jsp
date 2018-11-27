@@ -90,7 +90,7 @@
 
                 	 String Xuenian = (String)session.getAttribute("xuenian");
    String ketimingcheng=request.getParameter("p");
-   String sea_sql = "select * from shixunzhidao  where shixunxiangmumingcheng=? ";
+   String sea_sql = "select * from shixunzhidao  where ID=? ";
 
    ps = con.prepareStatement(sea_sql);
   ps.setString(1, ketimingcheng);
@@ -112,6 +112,7 @@ if(rs==null)
 while (rs.next()) 
    {
 // 		String shixunxiangmumingcheng = rs.getString("shixunxiangmumingcheng");
+		String ID = rs.getString("ID");
 		String shixunxiangmumingcheng = rs.getString("shixunxiangmumingcheng");
 		String xuefen = rs.getString("xuefen");
 		String shichang = rs.getString("shichang");
@@ -130,9 +131,19 @@ while (rs.next())
 										<tbody>
 
 
+
 											<tr>
 
-												<td>实习名称：<input
+												<td>实训ID：<input
+													style="border: 0; background-color: #F9F9F9" type="text"
+													name="ID"
+													value="<%=ID%>"></td>
+
+											</tr>
+
+											<tr>
+
+												<td>实训名称：<input
 													style="border: 0; background-color: #F9F9F9" type="text"
 													name="shixunxiangmumingcheng"
 													value="<%=shixunxiangmumingcheng%>"></td>

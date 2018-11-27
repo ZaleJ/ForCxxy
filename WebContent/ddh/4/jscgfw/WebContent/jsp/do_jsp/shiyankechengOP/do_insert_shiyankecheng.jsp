@@ -17,7 +17,7 @@
 		String shiyankechengmingcheng = request.getParameter("shiyankechengmingcheng");
 		String juese = request.getParameter("juese");
 		String zongshishu = request.getParameter("zongshishu");
-		String zhouxueshi = request.getParameter("zhouxueshi");
+		String zhoushishu = request.getParameter("zhoushishu");
 		String xueshengrenshu = request.getParameter("xueshengrenshu");
 		String pingxingbangeshu = request.getParameter("pingxingbangeshu");
 		String meibanfenzucishu = request.getParameter("meibanfenzucishu");
@@ -32,25 +32,25 @@
 
 
 <%
-	String ins_sql = "INSERT INTO co_jbqk_shiyankecheng VALUES(?,?,?)";
+// 	String ins_sql = "INSERT INTO co_jbqk_shiyankecheng VALUES(?,?,?)";
 
 // 		int timenum = Integer.parseInt(time2) + 1;
 		String ss =Xuenian;//2017-2018学年
 
-		ps = con.prepareStatement(ins_sql);
-		ps.setString(1, Gonghao);
-		ps.setString(2, shiyankechengmingcheng);
-		ps.setString(3, ss);
+// 		ps = con.prepareStatement(ins_sql);
+// 		ps.setString(1, Gonghao);
+// 		ps.setString(2, shiyankechengmingcheng);
+// 		ps.setString(3, ss);
 
-		ps.executeUpdate();
+// 		ps.executeUpdate();
 
-		String ins_sql2 = "INSERT INTO shiyankecheng VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String ins_sql2 = "INSERT INTO shiyankecheng(shiyankechengmingcheng, juese, zongshishu, zhoushishu, xueshengrenshu, pingxingbangeshu, meibanfenzucishu, zhidaojiaoshirenshu, shiyanleixing, shiyanbaogaocishu, pigaicishu, beizhu, xuenian, shenheqingkuang, gonghao) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement ps2 = null;
 		ps2 = con.prepareStatement(ins_sql2);
 		ps2.setString(1, shiyankechengmingcheng);
 		ps2.setString(2, juese);
 		ps2.setString(3, zongshishu);
-		ps2.setString(4, zhouxueshi);
+		ps2.setString(4, zhoushishu);
 
 		ps2.setString(5, xueshengrenshu);
 		ps2.setString(6, pingxingbangeshu);
@@ -64,10 +64,11 @@
 		ps2.setString(12, beizhu);
 		ps2.setString(13, ss);
 		ps2.setString(14, "未审核");
+		ps2.setString(15, Gonghao);
 		ps2.executeUpdate();
 %>
 
-<meta http-equiv='refresh' content='1;../../index/jsp/实验实践教学.jsp' />
+<meta http-equiv='refresh' content='1;../../index/JSP2.0/实验实践教学.jsp' />
 
 
 <%

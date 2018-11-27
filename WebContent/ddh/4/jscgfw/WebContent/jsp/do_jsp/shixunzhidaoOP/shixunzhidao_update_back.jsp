@@ -17,37 +17,37 @@ try
 {
   String beizhu=request.getParameter("beizhu");
 
-  String shixunxiangmumingcheng = request.getParameter("shixunxiangmumingcheng");
+ String ID =request.getParameter("ID");
+ String shixunxiangmumingcheng =request.getParameter("shixunxiangmumingcheng");
  
  %><%
-// 	String xuefen =request.getParameter("xuefen");
- 
-	String xuefen = request.getParameter("xuefen");
-	String shichang = request.getParameter("shichang");
-	String xueshengrenshu = request.getParameter("xueshengrenshu");
-	String xunhuancishu = request.getParameter("xunhuancishu");
-	String shixunleixing = request.getParameter("shixunleixing");
-	String chengguoxingshi = request.getParameter("chengguoxingshi");
+	String xuefen =request.getParameter("xuefen");
+	String shichang =request.getParameter("shichang");
+	String xueshengrenshu =request.getParameter("xueshengrenshu");
+	String xunhuancishu =request.getParameter("xunhuancishu");
+	String shixunleixing =request.getParameter("shixunleixing");
+	String chengguoxingshi =request.getParameter("chengguoxingshi");
 	
 //Integer.parseInt(zuoyecishu)
-   String ins_sql = "UPDATE  shixunzhidao SET xuefen=?, shichang=?, xueshengrenshu=?, xunhuancishu=?, "+
+   String ins_sql = "UPDATE  shixunzhidao SET  shixunxiangmumingcheng=?, xuefen=?, shichang=?, xueshengrenshu=?, xunhuancishu=?, "+
    "shixunleixing=?, chengguoxingshi=?, beizhu=? "+
-   "WHERE shixunxiangmumingcheng=? ";
+   "WHERE ID=? ";
   
   
 
    ps=con.prepareStatement(ins_sql);
 
- ps.setString(1,xuefen);
- ps.setString(2,shichang);
- ps.setString(3,xueshengrenshu);
+ ps.setString(1,shixunxiangmumingcheng);
+ ps.setString(2,xuefen);
+ ps.setString(3,shichang);
+ ps.setString(4,xueshengrenshu);
  
-ps.setString(4,xunhuancishu );
+ps.setString(5,xunhuancishu );
  
-ps.setString(5,shixunleixing);
- ps.setString(6,chengguoxingshi);
- ps.setString(7,beizhu);
- ps.setString(8,shixunxiangmumingcheng);
+ps.setString(6,shixunleixing);
+ ps.setString(7,chengguoxingshi);
+ ps.setString(8,beizhu);
+ ps.setString(9,ID);
   
    	
    
@@ -67,7 +67,7 @@ ps.setString(5,shixunleixing);
   	
 %>
 
-<meta http-equiv='refresh'  content='1;../../index/jsp/实训指导.jsp'/>
+<meta http-equiv='refresh'  content='1;../../index/JSP2.0/实训指导.jsp'/>
 <%
 } 
 

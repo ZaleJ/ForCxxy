@@ -15,13 +15,13 @@ try
    String ketimingcheng=request.getParameter("p");
    String Gonghao=(String)session.getAttribute("gonghao");
    String ins_sql = "DELETE FROM zhidaojingsai WHERE ID=?";
-   String ins_sql2 = "DELETE FROM co_jbqk_zhidaojingsai WHERE xiangmuID=? and gonghao=? ";
+//    String ins_sql2 = "DELETE FROM co_jbqk_zhidaojingsai WHERE xiangmuID=? and gonghao=? ";
   
    PreparedStatement ps2 = null;	
  
   
    ps = con.prepareStatement(ins_sql);
-    ps2 = con.prepareStatement(ins_sql2);
+//     ps2 = con.prepareStatement(ins_sql2);
    ps.setString(1, ketimingcheng);
    
    	ps.executeUpdate();

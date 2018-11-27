@@ -80,7 +80,7 @@ margin:0px
 <br>
 <h3 id="siteName" ><font color="#FFFFFF"></font></h3><p><font color="#FFFFFF">欢迎工号</font>：<%=session.getAttribute("gonghao")%><font color="#FFFFFF">的老师</font></p>
 
-  <a href="../login/login.jsp"  target="_top"><span  class="c_fff"><font color="#FFFFFF">退出</font></span></a>
+  <a href="../login/general_login/index.html"  target="_top"><span  class="c_fff"><font color="#FFFFFF">退出</font></span></a>
   <div id="txt2" > <a href="jsp/jibenxingxi.jsp" target="mainFrame"  id="1212"><span  class="c_fff"><font color="#FFFFFF">基本情况</font></span></a>
 </div>
  </div>   
@@ -216,8 +216,6 @@ finally
 			<select name="xueli">
 				<option value="本科" selected>本科
 				<option value="研究生">研究生
-				<option value="硕士">硕士
-				<option value="博士">博士
 			</select>
 	</td>
   </tr>
@@ -234,7 +232,12 @@ finally
   <tr>
     <td>
 		职称：
-			<input type='text' name="zhicheng" size="20" />
+			<select name="zhicheng">
+				<option value="助教" selected>助教
+				<option value="讲师">讲师
+				<option value="副教授">副教授
+				<option value="教授">教授
+			</select>
 	</td>
   </tr>
   <tr>
@@ -269,7 +272,15 @@ finally
   <tr>
     <td>
 		所在系部：
-			<input type='text' name="suozaixibu" size="15" /> 
+			<select name="suozaixibu">
+				<option value="电子与计算机工程学院" >电子与计算机工程学院
+				<option value="建筑与艺术设计学院">建筑与艺术设计学院
+				<option value="土木与交通工程学院">土木与交通工程学院
+				<option value="机械与电气工程学院">机械与电气工程学院
+				<option value="制药与化学工程学院">制药与化学工程学院
+				<option value="经济管理学院">经济管理学院
+				<option value="基础部">基础部
+			</select>
 	</td>
   </tr>
   <tr>

@@ -30,19 +30,19 @@
 
 
 <%
-	String ins_sql = "INSERT INTO co_jbqk_shixunzhidao VALUES(?,?,?)";
+// 	String ins_sql = "INSERT INTO co_jbqk_shixunzhidao VALUES(?,?,?)";
 
 		// 		int timenum = Integer.parseInt(time2) + 1; 
 		String ss = Xuenian;//2017-2018学年
 
-		ps = con.prepareStatement(ins_sql);
-		ps.setString(1, Gonghao);
-		ps.setString(2, shixunxiangmumingcheng);
-		ps.setString(3, ss);
+// 		ps = con.prepareStatement(ins_sql);
+// 		ps.setString(1, Gonghao);
+// 		ps.setString(2, shixunxiangmumingcheng);
+// 		ps.setString(3, ss);
 
-		ps.executeUpdate();
+// 		ps.executeUpdate();
 
-		String ins_sql2 = "INSERT INTO shixunzhidao VALUES(?,?,?,?,?,?,?,?,?,?)";
+		String ins_sql2 = "INSERT INTO shixunzhidao(shixunxiangmumingcheng, xuefen, shichang, xueshengrenshu, xunhuancishu, shixunleixing, chengguoxingshi, beizhu, xuenian, shenheqingkuang, gonghao) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement ps2 = null;
 		ps2 = con.prepareStatement(ins_sql2);
 		ps2.setString(1, shixunxiangmumingcheng);
@@ -57,10 +57,11 @@
 		ps2.setString(8, beizhu);
 		ps2.setString(9, ss);
 		ps2.setString(10, "未审核");
+		ps2.setString(11, Gonghao);
 		ps2.executeUpdate();
 %>
 
-<meta http-equiv='refresh' content='1;../../index/jsp/实训指导.jsp' />
+<meta http-equiv='refresh' content='1;../../index/JSP2.0/实训指导.jsp' />
 
 
 <%

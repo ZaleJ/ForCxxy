@@ -88,7 +88,7 @@
 
                 	 String Xuenian = (String)session.getAttribute("xuenian");
    String ketimingcheng=request.getParameter("p");
-   String sea_sql = "select * from daishixi  where shiximingcheng=? ";
+   String sea_sql = "select * from daishixi  where ID=? ";
 
    ps = con.prepareStatement(sea_sql);
   ps.setString(1, ketimingcheng);
@@ -109,6 +109,8 @@ if(rs==null)
 
 while (rs.next()) 
    {
+	
+		String ID = rs.getString("ID");
 		String shiximingcheng = rs.getString("shiximingcheng");
 		String xuefen = rs.getString("xuefen");
 		String shichang = rs.getString("shichang");
@@ -128,6 +130,13 @@ while (rs.next())
 									<form name="jbqk" action="daishixi_update_back.jsp"
 										method="get">
 										<tbody>
+											<tr>
+
+												<td>实习ID：<input
+													style="border: 0; background-color: #F9F9F9" type="text"
+													name="ID" value="<%=ID%>"></td>
+
+											</tr>
 
 
 											<tr>

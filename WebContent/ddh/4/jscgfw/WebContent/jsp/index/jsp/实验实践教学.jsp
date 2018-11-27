@@ -1,4 +1,5 @@
 
+<%@page import="org.apache.catalina.filters.CorsFilter"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"
 	errorPage=""%>
 <%@page import="java.sql.SQLException"%>
@@ -100,7 +101,7 @@
 
 																	<thead>
 																		<tr>
-
+																			<th class="text-center">实验课程ID</th>
 																			<th class="text-center">实验课程名称</th>
 																			<th class="text-center">角色</th>
 																			<th class="text-center">总时数</th>
@@ -164,7 +165,7 @@
 																		//int pagecount=(int)Math.ceil((float)totaluser/(float)pagesize);
 
 																		try {
-																			String $sql = "SELECT count(*)  FROM co_jbqk_shiyankecheng WHERE gonghao=? ";
+																			String $sql = "SELECT count(*)  FROM shiyankecheng WHERE gonghao=? ";
 																			int $totalNumber = 6;
 																			co_ps2 = con.prepareStatement($sql);
 																			String Gonghao = (String) session.getAttribute("gonghao");
@@ -182,11 +183,9 @@
 																				$page = Integer.parseInt(request.getParameter("p"));
 																			}
 
-																			String sel_co_sql = "SELECT top " + $pagesize
-																					+ " shiyankechengmingcheng  FROM co_jbqk_shiyankecheng WHERE gonghao=? and ID NOT IN(select top "
-																					+ $jump + " ID FROM co_jbqk_shiyankecheng WHERE gonghao=" + Gonghao + ")  ";
+																			String sel_co_sql = "SELECT top "+ $pagesize+" *  FROM shiyankecheng WHERE gonghao=?";
 
-																			String sel_ketang_sql = "SELECT *  FROM shiyankecheng WHERE shiyankechengmingcheng=? ";
+// 																			String sel_ketang_sql = "SELECT *  FROM shiyankecheng WHERE shiyankechengmingcheng=? ";
 
 																			if (time2 == null) {
 																				co_ps = con.prepareStatement(sel_co_sql);
@@ -194,28 +193,29 @@
 																			}
 
 																			else {
-																				int timenum = Integer.parseInt(time2) + 1;
-																				ss = "'" + time2 + "-" + timenum + "学年'";//2017-2018学年
+// 																				int timenum = Integer.parseInt(time2) + 1;
+// 																				ss = "'" + time2 + "-" + timenum + "学年'";//2017-2018学年
 
-																				String sel_co_sql2 = "SELECT top " + $pagesize
-																						+ " shiyankechengmingcheng  FROM co_jbqk_shiyankecheng WHERE gonghao=" + Gonghao
-																						+ " and xuenian=" + ss + " and ID NOT IN(select top " + $jump
-																						+ " ID FROM co_jbqk_shiyankecheng WHERE gonghao=" + Gonghao + ")  ";
-																				String sel_co_sql3 = "SELECT shiyankechengmingcheng  FROM co_jbqk_shiyankecheng WHERE gonghao='"
-																						+ Gonghao + "' and   xuenian=" + ss + "  ";
-																				co_ps = con.prepareStatement(sel_co_sql3);
-
+// 																				String sel_co_sql2 = "SELECT top " + $pagesize
+// 																						+ " shiyankechengmingcheng  FROM co_jbqk_shiyankecheng WHERE gonghao=" + Gonghao
+// 																						+ " and xuenian=" + ss + " and ID NOT IN(select top " + $jump
+// 																						+ " ID FROM co_jbqk_shiyankecheng WHERE gonghao=" + Gonghao + ")  ";
+// 																				String sel_co_sql3 = "SELECT shiyankechengmingcheng  FROM co_jbqk_shiyankecheng WHERE gonghao='"
+// 																						+ Gonghao + "' and   xuenian=" + ss + "  ";
+// 																				co_ps = con.prepareStatement(sel_co_sql3);
+																				co_ps = con.prepareStatement(sel_co_sql);
+																				co_ps.setString(1, Gonghao);
 																			}
 																			co_rs = co_ps.executeQuery();
 
 																			while (co_rs.next()) {
-
+																				String ID = co_rs.getString("ID");
 																				String shiyankechengmingcheng = co_rs.getString("shiyankechengmingcheng");
 																				//String xuenian=co_rs.getString("xuenian");
-																				ketang_ps = con.prepareStatement(sel_ketang_sql);
-																				ketang_ps.setString(1, shiyankechengmingcheng);
-																				ketang_rs = ketang_ps.executeQuery();
-																				while (ketang_rs.next()) {
+// 																				ketang_ps = con.prepareStatement(sel_ketang_sql);
+// 																				ketang_ps.setString(1, shiyankechengmingcheng);
+// 																				ketang_rs = ketang_ps.executeQuery();
+// 																				while (ketang_rs.next()) {
 
 																					String juese = ketang_rs.getString("juese");
 																					String zongshishu = ketang_rs.getString("zongshishu");
@@ -234,6 +234,7 @@
 																	<form id='ketang_ID' method='post'>
 																		<tbody>
 																			<tr>
+																				<td class="text-center"><%=ID%></td>
 																				<td class="text-center"><%=shiyankechengmingcheng%></td>
 																				<td class="text-center"><%=juese%></td>
 																				<td class="text-center"><%=zongshishu%></td>
@@ -251,8 +252,7 @@
 																				<td class="text-center"><%=beizhu%></td>
 																				<td class="text-center"><%=xuenian%></td>
 																				<td class="text-center"><%=shenheqingkuang%></td>
-																				<td class="text-center"><nter">
-																					<a
+																				<td class="text-center"><nter"> <a
 																						href="../../do_jsp/shiyankechengOP/shiyankecheng_update_page.jsp?p=<%=shiyankechengmingcheng%>">更新</a>||<a
 																						class="del"
 																						href="../../do_jsp/shiyankechengOP/do_delet_shiyankecheng.jsp?p=<%=shiyankechengmingcheng%>">删除</a></td>
@@ -270,7 +270,7 @@
 
 
 																	<%
-																		}
+																		
 
 																			}
 																	%>
@@ -308,7 +308,7 @@
 
 																				<td class="text-center"><input
 																					style="border: 0; background-color: #F9F9F9"
-																					type="text" size=3 name="shiyankechengmingcheng"></td>
+																					type="text" size=13 name="shiyankechengmingcheng"></td>
 																				<td class="text-center"><input
 																					style="border: 0; background-color: #F9F9F9"
 																					type="text" size=3 name="juese"></td>
@@ -333,14 +333,15 @@
 																					style="border: 0; background-color: #F9F9F9"
 																					type="text" size=3 name="zhidaojiaoshirenshu"></td>
 																				<!-- 		<td class="text-center"><input style="border:0; background-color:#F9F9F9" type="text" size=3 name="shiyanleixing"></td> -->
-<td class="text-center"><select name='shiyanleixing'>
-		<option value="演示性">演示性</option>
-		  <option value="验证性">验证性</option>
-		  <option value="设计性">设计性</option>
-		  <option value="综合性">综合性</option>
-		  <option value="创新性">创新性</option>
-		
-		</select></td>
+																				<td class="text-center"><select
+																					name='shiyanleixing'>
+																						<option value="演示性">演示性</option>
+																						<option value="验证性">验证性</option>
+																						<option value="设计性">设计性</option>
+																						<option value="综合性">综合性</option>
+																						<option value="创新性">创新性</option>
+
+																				</select></td>
 
 
 																				<td class="text-center"><input
@@ -457,7 +458,7 @@
 															if ($page < $totalPage) {
 														%>
 
-														<li><a href="shiyankecheng.jsp?p=<%=$page + 1%>">»</a></li>
+														<li><a href="实验实践教学.jsp?p=<%=$page + 1%>">»</a></li>
 
 
 
@@ -516,57 +517,39 @@
 
 
 										<%
+											}
 
- 
-                          
-                          
+											//以下代码捕捉异常
+											catch (Exception e) {
+												System.out.println(e.getMessage());
+											}
 
-				       
-				       
-				    }
-				       
-				       
-				   
-				       
-				       
-				       
-				       
-				       
-				       
-				       
-				       
-				       //以下代码捕捉异常
-				catch (Exception e) {
-					System.out.println(e.getMessage());
-				}
+											//以下代码是用来关掉数据库的是必须要写的，照写OK
+											finally {
 
-				//以下代码是用来关掉数据库的是必须要写的，照写OK
-				finally {
-
-					if (ketang_ps != null) {
-						try {
-							ketang_ps.close();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-					if (co_ps != null) {
-						try {
-							co_ps.close();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-					if (con != null) {
-						try {
-							con.close();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				}
-				       
-				       %>
+												if (ketang_ps != null) {
+													try {
+														ketang_ps.close();
+													} catch (Exception e) {
+														e.printStackTrace();
+													}
+												}
+												if (co_ps != null) {
+													try {
+														co_ps.close();
+													} catch (Exception e) {
+														e.printStackTrace();
+													}
+												}
+												if (con != null) {
+													try {
+														con.close();
+													} catch (Exception e) {
+														e.printStackTrace();
+													}
+												}
+											}
+										%>
 
 
 

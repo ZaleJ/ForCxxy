@@ -108,7 +108,7 @@ ChildMenu2.style.display = "none";
        
       <li ><a href="jsp/ketangjiaoxue.jsp" target="mainFrame">教学工作</a></li> 
       <li><a href="jsp/实验实践教学.jsp" target="mainFrame">实验实践教学</a></li> 
-      <li ><a href="JSP2.0/带实习.jsp" target="mainFrame">带实习</a></li> 
+      <li ><a href="JSP2.0/带实习.jsp" target="mainFrame">实习指导</a></li> 
       <li ><a href="JSP2.0/实训指导.jsp" target="mainFrame">实训指导</a></li>
 	  <li ><a href="JSP2.0/毕业设计指导.jsp"target="mainFrame">毕业设计指导</a></li> 
 	  <li ><a href="JSP2.0/指导大创.jsp"target="mainFrame">指导大创</a></li> 

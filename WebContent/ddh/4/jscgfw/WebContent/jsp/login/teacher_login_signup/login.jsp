@@ -6,19 +6,24 @@
 
 
 request.setCharacterEncoding("utf-8");
-  
 try 
 {
- 
-  
   String remember=request.getParameter("passcookies"); 
    String gonghao=request.getParameter("gonghao");
    String inkey=request.getParameter("inkey");
+   String identity = request.getParameter("identity");
    String xuenian="2017-2018学年";
     String state="0";
    //String  sate=request.getParameter("sate");
+   
+   
+   // 老师和系部管理员和院校管理员唯一的不同是网站的左侧边栏不同，然后将left文件分成三个，
+   // left作为老师的左侧边栏，在其中访问的页面就指向老师的操作页面
+   // left_departmentManager和left_collegeManager作为系部级管理员和院校管理员的左侧侧边栏
+   
   
-   String sea_sql = "SELECT *  FROM teachers WHERE gonghao=? AND inkey=?";
+  String sea_sql = null;
+  sea_sql = "SELECT *  FROM "+identity+" WHERE gonghao=? AND inkey=?";
   
    ps = con.prepareStatement(sea_sql);
    ps.setString(1, gonghao);
@@ -27,6 +32,7 @@ try
    
 
 	if(rs.next()){
+  System.out.println("yes");
 	    state="0";
 		session.setAttribute("gonghao", gonghao);
 		session.setAttribute("inkey", inkey);
@@ -39,16 +45,13 @@ try
                 c2.setMaxAge(1000);//这里设置保存这条Cookie的时间  
                 response.addCookie(c1);//添加Cookie  
                 response.addCookie(c2);  
-              
-     
- 
             }
             else
             { 
              }
                %>
                
-               <meta http-equiv='refresh'  content='3;../../index/index2.jsp'/>
+               <meta http-equiv='refresh'  content='3;../../index/index.jsp?identity=<%=identity%>'/>
 	<span style='color:green'>登陆成功，3秒后自动跳转</span>
                
                
@@ -59,104 +62,14 @@ try
 	
 	
 	
-	
-	
-	else{
-	 PreparedStatement ps2 = null;
-     ResultSet rs2 = null;
-	 String sea_sql2 = "SELECT *  FROM shengherenyuan WHERE gonghao=? AND inkey=?";
-	  ps2 = con.prepareStatement(sea_sql2);
-   ps2.setString(1, gonghao);
-   ps2.setString(2, inkey);
-   rs2 = ps2.executeQuery();
-	 
-	if(rs2.next()){
-	  state="1";
-		session.setAttribute("gonghao", gonghao);
-		session.setAttribute("inkey", inkey);
-		session.setAttribute("xuenian",xuenian);
-		session.setAttribute("state", state);
-		if (remember!= null) {  
-                Cookie c1 = new Cookie("gonghao", gonghao);  
-                Cookie c2 = new Cookie("inkey", inkey);  
-                c1.setMaxAge(1000);  
-                c2.setMaxAge(1000);//这里设置保存这条Cookie的时间  
-                response.addCookie(c1);//添加Cookie  
-                response.addCookie(c2);  
-              
-     
- 
-            }
-            else
-            { 
-             }
-               %>
-               
-               <meta http-equiv='refresh'  content='3;../../index/index2.jsp'/>
-	<span style='color:green'>登陆成功，3秒后自动跳转</span>
-               
-               
-               <%     
-            
-	}
-	
-	
-	else{
-	
-		PreparedStatement ps3 = null;
-	     ResultSet rs3 = null;
-		 String sea_sql3 = "SELECT *  FROM super_manager WHERE gonghao=? AND inkey=?";
-		  ps3 = con.prepareStatement(sea_sql3);
-	   ps3.setString(1, gonghao);
-	   ps3.setString(2, inkey);
-	   rs3 = ps3.executeQuery();
-		 
-		if(rs3.next()){
-		  state="2";
-			session.setAttribute("gonghao", gonghao);
-			session.setAttribute("inkey", inkey);
-			session.setAttribute("xuenian",xuenian);
-			session.setAttribute("state", state);
-			if (remember!= null) {  
-	                Cookie c1 = new Cookie("gonghao", gonghao);  
-	                Cookie c2 = new Cookie("inkey", inkey);  
-	                c1.setMaxAge(1000);  
-	                c2.setMaxAge(1000);//这里设置保存这条Cookie的时间  
-	                response.addCookie(c1);//添加Cookie  
-	                response.addCookie(c2);  
-	              
-	     
-	 
-	            }
-	            else
-	            { 
-	             }
-	
-		
-	
-	
-	
-            %>
-            
-            <meta http-equiv='refresh'  content='3;../../index2/index2.jsp'/>
-	<span style='color:green'>登陆成功，3秒后自动跳转</span>
-            
-            
-            <%    
-	
-	
-	
-	
- }//if(rs2.next())
 		else{
 			 %>
 				
-				<meta http-equiv='refresh'  content='3;../login.jsp'/>
+				<meta http-equiv='refresh'  content='3;../general_login/index.html'/>
 				<span style='color:red'>用户名或者密码错误，3秒后自动跳转</span>
 				
+				
 				<%
-	}
-		}		//else{
 	}
 
 } 

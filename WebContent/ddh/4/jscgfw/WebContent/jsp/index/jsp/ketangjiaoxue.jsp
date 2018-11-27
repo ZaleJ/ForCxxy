@@ -98,7 +98,7 @@
                             <thead>
                             <tr>
 
-                                <th class="text-center">课程名称</th>
+                                <th class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;课程名称&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                 <th class="text-center">课程性质</th>
                                 <th class="text-center">授课形式</th>
                                 <th class="text-center">是否</th>
@@ -234,13 +234,8 @@ if(paa!=null){  pa=Integer.parseInt(request.getParameter("pa"));}
 							String beizhu = ketang_rs.getString("beizhu");  
 							String xuenian = ketang_rs.getString("xuenian");  
 							String shenheqingkuang = ketang_rs.getString("shenheqingkuang");  
-				       
-				 
-				      
-				       
-				       
-				       
-				       
+							
+							
 				       %>
 				 <form id='ketang_ID' method='post'  >     
 				<tbody>      
@@ -312,7 +307,7 @@ if(paa!=null){  pa=Integer.parseInt(request.getParameter("pa"));}
                          
 		<tr>
 		
-		<td class="text-center"><input style="border:0; background-color:#F9F9F9" type="text" size=3 name="kechengmingcheng"></td>
+		<td class="text-center"><input style="border:0; background-color:#F9F9F9" type="text" size=13 name="kechengmingcheng"></td>
 		<td class="text-center"><input style="border:0; background-color:#F9F9F9" type="text" size=3 name="kechengxingzhi"></td>
 		
 		<td class="text-center"><input style="border:0; background-color:#F9F9F9" type="text" size=3 name="shoukexingshi"></td>

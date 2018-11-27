@@ -37,7 +37,7 @@ try
    String zhicheng=request.getParameter("zhicheng");
    String zhiwu=request.getParameter("zhiwu");
    String zhengzhimianmao=request.getParameter("zhengzhimianmao");
-   String qiandinghetong=request.getParameter("qiandinghetong");
+   String qiandinghetong=request.getParameter("qiandinghetongqingkuang");
    String gonghao=request.getParameter("gonghao");
    String suozaixibu=request.getParameter("suozaixibu");
   
@@ -45,7 +45,10 @@ try
    String benkebiyexuexiao=request.getParameter("benkebiyexuexiao");
    String huodezuigaoxuelideyuanxiaohuojigou=request.getParameter("huodezuigaoxuelideyuanxiaohuojigou");
    String huodezuigaoxueweideyuanxiaohuojigou=request.getParameter("huodezuigaoxueweideyuanxiaohuojigou");
+   
+   // 工程实践部分有两个部分组成
    String gongchengshijianjingli=request.getParameter("gongchengshijianjingli");
+   String zhidaoshijian=request.getParameter("zhidaoshijian");
    String beizhu=request.getParameter("beizhu");
    
    String ins_sql = "UPDATE  jbqk SET xingming=?, xingbie=?, chushengnianyue=?, xueli=?, xuewei=?, zhicheng=?, zhiwu=?, zhengzhimianmao=?, qiandinghetongqingkuang=?, suozaixibu=?, jinxiaoshijian=?, gaoxiaogongling=?, benkebiyexuexiao=?, huodezuigaoxuelideyuanxiaohuojigou=?, huodezuigaoxueweideyuanxiaohuojigou=?, gongchengshijianjingli=?, beizhu=? WHERE gonghao=?";
@@ -74,6 +77,10 @@ try
    ps.setString(13, benkebiyexuexiao);
    ps.setString(14, huodezuigaoxuelideyuanxiaohuojigou);
    ps.setString(15, huodezuigaoxueweideyuanxiaohuojigou);
+   
+   // 将工程实践经历的几个部分连接起来，分别是gongchengshijianjingli与zhidaoshijian与
+   gongchengshijianjingli = gongchengshijianjingli+", 指导学生实践"+zhidaoshijian+"轮";
+   
    ps.setString(16, gongchengshijianjingli);
    ps.setString(17, beizhu);
  ps.setString(18, gonghao);

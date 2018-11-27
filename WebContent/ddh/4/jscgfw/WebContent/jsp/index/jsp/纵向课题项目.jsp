@@ -59,8 +59,8 @@
                             <tr>
 
                                 <th class="text-center">课题名称名称</th>
-                                <th class="text-center">课题来源</th>
                                 <th class="text-center">人物角色</th>
+                                <th class="text-center">课题来源</th>
                                 <th class="text-center">课题性质</th>
                                 <th class="text-center">经费额度</th>
                               
@@ -198,8 +198,8 @@ ketixingzhi=rs.getString("ketixingzhi");
                                                  
 		<tr>
 		<td class="text-center"><%=  ketimingcheng %></td>
-		<td class="text-center"><%=ketilaiyuan %></td>
 		<td class="text-center"><%=renwujuese %></td>
+		<td class="text-center"><%=ketilaiyuan %></td>
 				<td class="text-center"><%= ketixingzhi%></td>
 				
 			
@@ -260,8 +260,24 @@ ketixingzhi=rs.getString("ketixingzhi");
                                           
 		<tr>
 		<td class="text-center"><input style="border:0; background-color:#F9F9F9" type="text" size=3  name="ketimingcheng"></input></td>
-		<td class="text-center"><input style="border:0; background-color:#F9F9F9" type="text" size=3 name="ketilaiyuan"></input></td>
-		<td class="text-center"><input style="border:0; background-color:#F9F9F9" type="text" size=3  name="renwujuese"></input></td>
+<!-- 		<td class="text-center"><input style="border:0; background-color:#F9F9F9" type="text" size=3 name="renwujuese"></input></td> -->
+		<td class="text-center"><select name='renwujuese' >
+		<option value="第一主持人">第一主持人</option>
+		  <option value="第二主持人">第二主持人</option>
+		  <option value="第三主持人">第三主持人</option>
+		  <option value="第1参与者">第1参与者</option>
+		  <option value="第2参与者">第2参与者</option>
+		  <option value="第3参与者">第3参与者</option>
+		  <option value="第4参与者">第4参与者</option>
+		  <option value="第5参与者">第5参与者</option>
+		  <option value="第6参与者">第6参与者</option>
+		  <option value="第7参与者">第7参与者</option>
+		  <option value="第8参与者">第8参与者</option>
+		  <option value="第9参与者">第9参与者</option>
+		  <option value="第10参与者">第10参与者</option>
+		
+		</select></td>
+		<td class="text-center"><input style="border:0; background-color:#F9F9F9" type="text" size=3  name="ketilaiyuan"></input></td>
 		<td class="text-center"><input style="border:0; background-color:#F9F9F9" type="text" size=3 na3me="ketixingzhi"></input></td>
 		
 				<td class="text-center">	           <input style="border:0; background-color:#F9F9F9" type="text" size=3 name="jingfeiedu"></input></td>

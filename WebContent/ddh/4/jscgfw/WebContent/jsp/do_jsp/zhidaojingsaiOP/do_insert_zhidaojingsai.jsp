@@ -166,15 +166,15 @@ while (fufen_rs.next()) {
 	
 	
 	
-	String xiangmuID = null;
-	String sel_co_sql = "select ID  from zhidaojingsai where gonghao=? and jingsaimingcheng=?";
-	PreparedStatement co_ps = con.prepareStatement(sel_co_sql);
-	co_ps.setString(1, Gonghao);
-	co_ps.setString(2, jingsaimingcheng);
-	ResultSet co_rs = co_ps.executeQuery();
-	while (co_rs.next()) {
-		xiangmuID = co_rs.getString("ID");
-	}
+// 	String xiangmuID = null;
+// 	String sel_co_sql = "select ID  from zhidaojingsai where gonghao=? and jingsaimingcheng=?";
+// 	PreparedStatement co_ps = con.prepareStatement(sel_co_sql);
+// 	co_ps.setString(1, Gonghao);
+// 	co_ps.setString(2, jingsaimingcheng);
+// 	ResultSet co_rs = co_ps.executeQuery();
+// 	while (co_rs.next()) {
+// 		xiangmuID = co_rs.getString("ID");
+// 	}
 	
 	
 	
@@ -183,13 +183,13 @@ while (fufen_rs.next()) {
 	
 	
 	
-	String ins_sql = "INSERT INTO co_jbqk_zhidaojingsai VALUES(?,?,?)";
-	ps = con.prepareStatement(ins_sql);
-	ps.setString(1, Gonghao);
-	ps.setString(2, xiangmuID);
-	ps.setString(3, ss);
+// 	String ins_sql = "INSERT INTO co_jbqk_zhidaojingsai VALUES(?,?,?)";
+// 	ps = con.prepareStatement(ins_sql);
+// 	ps.setString(1, Gonghao);
+// 	ps.setString(2, xiangmuID);
+// 	ps.setString(3, ss);
 
-	ps.executeUpdate();
+// 	ps.executeUpdate();
 	
 	
 %>

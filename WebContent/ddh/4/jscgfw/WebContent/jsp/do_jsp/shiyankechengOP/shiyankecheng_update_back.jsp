@@ -15,8 +15,9 @@ span PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4
 
 try 
 {
+ String ID = request.getParameter("ID");
   String beizhu=request.getParameter("beizhu");
-  String shiyankechengmingcheng = request.getParameter("shiyankechengmingcheng");
+  String shiyankechengmingcheng = request.getParameter("kechengmingcheng");
  
  %><%
  String juese = request.getParameter("juese");
@@ -30,29 +31,30 @@ try
 	String shiyanbaogaocishu = request.getParameter("shiyanbaogaocishu");
 	String pigaicishu = request.getParameter("pigaicishu");
 //Integer.parseInt(zuoyecishu)
-   String ins_sql = "UPDATE  shiyankecheng SET juese=?, zongshishu=?, zhoushishu=?, xueshengrenshu=?, pingxingbangeshu=?,"+
+   String ins_sql = "UPDATE  shiyankecheng SET shiyankechengmingcheng=?,  juese=?, zongshishu=?, zhoushishu=?, xueshengrenshu=?, pingxingbangeshu=?,"+
    "meibanfenzucishu=?, zhidaojiaoshirenshu=?, shiyanleixing=?, shiyanbaogaocishu=?, pigaicishu=?, beizhu=? "+
-   "WHERE shiyankechengmingcheng=? ";
+   "WHERE ID=? ";
   
   
 
    ps=con.prepareStatement(ins_sql);
 
- ps.setString(1,juese);
- ps.setString(2,zongshishu);
- ps.setString(3,zhoushishu);
+ ps.setString(1,shiyankechengmingcheng);
+ ps.setString(2,juese);
+ ps.setString(3,zongshishu);
+ ps.setString(4,zhoushishu);
  
-ps.setString(4,xueshengrenshu );
-ps.setString(5, pingxingbangeshu);
+ps.setString(5,xueshengrenshu );
+ps.setString(6, pingxingbangeshu);
  
-ps.setString(6,meibanfenzucishu);
- ps.setString(7,zhidaojiaoshirenshu);
- ps.setString(8,shiyanleixing);
- ps.setString(9,shiyanbaogaocishu);
- ps.setString(10,pigaicishu);
+ps.setString(7,meibanfenzucishu);
+ ps.setString(8,zhidaojiaoshirenshu);
+ ps.setString(9,shiyanleixing);
+ ps.setString(10,shiyanbaogaocishu);
+ ps.setString(11,pigaicishu);
  
- ps.setString(11,beizhu);
- ps.setString(12,shiyankechengmingcheng);
+ ps.setString(12,beizhu);
+ ps.setString(13,ID);
   
    	
    
@@ -72,7 +74,7 @@ ps.setString(6,meibanfenzucishu);
   	
 %>
 
-<meta http-equiv='refresh'  content='1;../../index/jsp/jibenxingxi.jsp'/>
+<meta http-equiv='refresh'  content='1;../../index/JSP2.0/实验实践教学.jsp'/>
 <%
 } 
 

@@ -82,11 +82,11 @@
 										try {
 
 											String Xuenian = (String) session.getAttribute("xuenian");
-											String ketangID = request.getParameter("p");
+											String ID = request.getParameter("p");
 											String sea_sql = "select * from zhidaodachuang  where ID=? ";
 
 											ps = con.prepareStatement(sea_sql);
-											ps.setString(1, ketangID);
+											ps.setString(1, ID);
 											rs = ps.executeQuery();
 
 											// 	out.println(Gonghao);
@@ -117,6 +117,14 @@
 									<form name="jbqk" action="zhidaodachuang_update_back.jsp"
 										method="get">
 										<tbody>
+										
+										<tr>
+
+												<td>项目ID：<input
+													style="border: 0; background-color: #F9F9F9" type="text"
+													name="ID" value="<%=ID%>"></td>
+
+											</tr>
 
 
 											<tr>

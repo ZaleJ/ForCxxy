@@ -17,6 +17,7 @@ try
 {
   String beizhu=request.getParameter("beizhu");
 
+ String ID =request.getParameter("ID");
  String shiximingcheng =request.getParameter("shiximingcheng");
  
  %><%
@@ -29,25 +30,26 @@ try
 	String shifoupigai =request.getParameter("shifoupigai");
 	
 //Integer.parseInt(zuoyecishu)
-   String ins_sql = "UPDATE  daishixi SET xuefen=?, shichang=?, xueshengrenshu=?, xunhuancishu=?, "+
+   String ins_sql = "UPDATE  daishixi SET  shiximingcheng=?, xuefen=?, shichang=?, xueshengrenshu=?, xunhuancishu=?, "+
    "zhidaoneirong=?, shixibaogao=?, shifoupigai=?, beizhu=? "+
-   "WHERE shiximingcheng=? ";
+   "WHERE ID=? ";
   
   
 
    ps=con.prepareStatement(ins_sql);
 
- ps.setString(1,xuefen);
- ps.setString(2,shichang);
- ps.setString(3,xueshengrenshu);
+ ps.setString(1,shiximingcheng);
+ ps.setString(2,xuefen);
+ ps.setString(3,shichang);
+ ps.setString(4,xueshengrenshu);
  
-ps.setString(4,xunhuancishu );
+ps.setString(5,xunhuancishu );
  
-ps.setString(5,zhidaoneirong);
- ps.setString(6,shixibaogao);
- ps.setString(7,shifoupigai);
- ps.setString(8,beizhu);
- ps.setString(9,shiximingcheng);
+ps.setString(6,zhidaoneirong);
+ ps.setString(7,shixibaogao);
+ ps.setString(8,shifoupigai);
+ ps.setString(9,beizhu);
+ ps.setString(10,ID);
   
    	
    

@@ -32,6 +32,51 @@
 	
 	
     
+<script>
+function updateForm(){
+	
+	// ----首先通过ID获取到我们需要的增加记录的form表单
+	var updateForm = document.getElementById("updateForm");
+	
+	// ----通过id获取到我们需要判断是否勾选的checkbox
+	
+	
+		// 课程性质相关的5个可选框
+	var yanshixing = document.getElementById("yanshixing");
+	var yanzhengxing = document.getElementById("yanzhengxing");
+	var shejixing = document.getElementById("shejixing");
+	var zonghexing = document.getElementById("zonghexing");
+	var chuangxinxing = document.getElementById("chuangxinxing");
+	
+	
+	
+	
+	
+	//然后将勾选的checkbox中的value放入一个字符串中
+		// 课程性质相关的字符串拼接
+	var shiyanleixing = "";
+	if(yanshixing.checked){
+		shiyanleixing+=yanshixing.value;
+	}
+	if(yanzhengxing.checked){
+		shiyanleixing+="  "+yanzhengxing.value;
+	}
+	if(shejixing.checked){
+		shiyanleixing+="  "+shejixing.value;
+	}
+	if(zonghexing.checked){
+		shiyanleixing+="  "+zonghexing.value;
+	}
+	if(chuangxinxing.checked){
+		shiyanleixing+="  "+chuangxinxing.value;
+	}
+	
+	// 将已经勾选的checkbox中的内容放入隐藏的input中的value，然后将这个表单提交给后台服务进行处理
+	document.getElementById("shiyanleixing").value = shiyanleixing;
+	updateForm.submit();
+}
+
+</script>
 	
 </head>
 <body>
@@ -81,7 +126,7 @@
 
                 	 String Xuenian = (String)session.getAttribute("xuenian");
    String ketimingcheng=request.getParameter("p");
-   String sea_sql = "select * from shiyankecheng  where shiyankechengmingcheng=? ";
+   String sea_sql = "select * from shiyankecheng  where ID=? ";
 
    ps = con.prepareStatement(sea_sql);
   ps.setString(1, ketimingcheng);
@@ -101,6 +146,7 @@ if(rs==null)
 
 while (rs.next()) 
    {
+	String ID = rs.getString("ID");
 	 String shiyankechengmingcheng = rs.getString("shiyankechengmingcheng");
 	String juese = rs.getString("juese");
 	String zongshishu = rs.getString("zongshishu");
@@ -119,9 +165,14 @@ while (rs.next())
                
               %>
              
-      <form name="jbqk"   action="shiyankecheng_update_back.jsp" method="get"   >                                           
+      <form name="jbqk"   action="shiyankecheng_update_back.jsp" method="get"  id="updateForm"  >                                           
       <tbody> 
                                                  
+       	 <tr>
+		
+		<td >实验课程ID（不可修改）：<input readonly="true" style="border:0; background-color:#F9F9F9" type="text"  name="ID" value="<%=ID%>"></td>
+				
+		</tr>
 		
 		<tr>
 		
@@ -130,52 +181,71 @@ while (rs.next())
 		</tr>
 		<tr>
 		
-		<td >角色:<input style="border:0; background-color:#F9F9F9" type="text"  name="kechengxingzhi" value="<%=juese%>"></td>
+		<td >角色:
+			<select name="juese">
+				<option value="第一指导">第一指导</option>
+				<option value="第二指导">第二指导</option>
+				<option value="第三指导">第三指导</option>
+				<option value="参与">参与</option>
+			</select>
+		</td>
 				
 		</tr>
 		<tr>
 		
-		<td >总时数:<input style="border:0; background-color:#F9F9F9" type="text"  name="shoukexingshi" value="<%=zongshishu%>"></td>
+		<td >总时数:<input style="border:0; background-color:#F9F9F9" type="text"  name="zongshishu" value="<%=zongshishu%>"></td>
 				
 		</tr>
 		<tr>
 		
-		<td >周学时:<input style="border:0; background-color:#F9F9F9" type="text"  name="shifou"value="<%=zhoushishu%>"></td>
+		<td >周学时:<input style="border:0; background-color:#F9F9F9" type="text"  name="zhoushishu"value="<%=zhoushishu%>"></td>
 				
 		</tr>
 		<tr>
 		
-		<td >学生人数:<input style="border:0; background-color:#F9F9F9" type="text"  name="xuefen" value="<%=xueshengrenshu%>"></td>
+		<td >学生人数:<input style="border:0; background-color:#F9F9F9" type="text"  name="xueshengrenshu" value="<%=xueshengrenshu%>"></td>
 				
 		</tr>
 		<tr>
 		
-		<td >平行班个数:<input style="border:0; background-color:#F9F9F9" type="text"  name="xueshi" value="<%=pingxingbangeshu%>"></td>
+		<td >平行班个数:<input style="border:0; background-color:#F9F9F9" type="text"  name="pingxingbangeshu" value="<%=pingxingbangeshu%>"></td>
 				
 		</tr>
 		<tr>
 		
-		<td >每班分组次数:<input style="border:0; background-color:#F9F9F9" type="text"  name="shoukebangeshu" value="<%=meibanfenzucishu%>"></td>
+		<td >每班分组次数:<input style="border:0; background-color:#F9F9F9" type="text"  name="meibanfenzucishu" value="<%=meibanfenzucishu%>"></td>
 				
 		</tr>
 		<tr>
 		
-		<td >指导教师人数:<input style="border:0; background-color:#F9F9F9" type="text"  name="pingxingbangeshu" value="<%=zhidaojiaoshirenshu%>"></td>
+		<td >指导教师人数:<input style="border:0; background-color:#F9F9F9" type="text"  name="zhidaojiaoshirenshu" value="<%=zhidaojiaoshirenshu%>"></td>
 				
 		</tr>
 		<tr>
 		
-		<td >实验类型:<input style="border:0; background-color:#F9F9F9" type="text"  name="zuoyecishu" value="<%=shiyanleixing%>"></td>
+		<td >实验类型:
+			<input type="hidden" name="shiyanleixing" id="shiyanleixing" value="do not get"/>
+			<br/>
+			<input type="checkbox" id="yanshixing" value="演示性" />演示性
+			<br/>
+			<input type="checkbox" id="yanzhengxing" value="验证性" />验证性
+			<br/>
+			<input type="checkbox" id="shejixing" value="设计性" />设计性
+			<br/>
+			<input type="checkbox" id="zonghexing" value="综合性" />综合性
+			<br/>
+			<input type="checkbox" id="chuangxinxing" value="创新性" />创新性
+		</td>
 				
 		</tr>
 		<tr>
 		
-		<td >交试验报告次数:<input style="border:0; background-color:#F9F9F9" type="text"  name="pigaicishu" value="<%=shiyanbaogaocishu%>"></td>
+		<td >交试验报告次数:<input style="border:0; background-color:#F9F9F9" type="text"  name="shiyanbaogaocishu" value="<%=shiyanbaogaocishu%>"></td>
 				
 		</tr>
 		<tr>
 		
-		<td >批改次数:<input style="border:0; background-color:#F9F9F9" type="text"  name="dayicishu" value="<%=pigaicishu%>"></td>
+		<td >批改次数:<input style="border:0; background-color:#F9F9F9" type="text"  name="pigaicishu" value="<%=pigaicishu%>"></td>
 				
 		</tr>
 		<tr>
@@ -187,7 +257,7 @@ while (rs.next())
 	
 		<tr>
 		
-		<td ><input type="submit" value="确定修改" name="button3" class="btn btn-primary"></td>
+		<td ><input type="button" value="确定修改" name="button3" class="btn btn-primary" onclick="updateForm()"></td>
 				
 		</tr>
 		</form>

@@ -12,28 +12,28 @@ try
  
   
 
-   String ketimingcheng=request.getParameter("p");
+   String ID=request.getParameter("p");
    String Gonghao=(String)session.getAttribute("gonghao");
-   String ins_sql = "DELETE FROM shixunzhidao WHERE shixunxiangmumingcheng=?";
-   String ins_sql2 = "DELETE FROM co_jbqk_shixunzhidao WHERE shixunxiangmumingcheng=? and gonghao=? ";
+   String ins_sql = "DELETE FROM shixunzhidao WHERE ID=?";
+//    String ins_sql2 = "DELETE FROM co_jbqk_shixunzhidao WHERE shixunxiangmumingcheng=? and gonghao=? ";
   
    PreparedStatement ps2 = null;	
  
   
    ps = con.prepareStatement(ins_sql);
-    ps2 = con.prepareStatement(ins_sql2);
-   ps.setString(1, ketimingcheng);
+//     ps2 = con.prepareStatement(ins_sql2);
+   ps.setString(1, ID);
    
    	ps.executeUpdate();
    	
-   	 ps2.setString(1, ketimingcheng);
-   	 ps2.setString(2, Gonghao);
+//    	 ps2.setString(1, ketimingcheng);
+//    	 ps2.setString(2, Gonghao);
    	
- 	ps2.executeUpdate();
+//  	ps2.executeUpdate();
 
  %>
  
-   <meta http-equiv='refresh'  content='1;../../index/jsp/实训指导.jsp'  class="del" />
+   <meta http-equiv='refresh'  content='1;../../index/JSP2.0/实训指导.jsp'  class="del" />
 
  
  <%  }  

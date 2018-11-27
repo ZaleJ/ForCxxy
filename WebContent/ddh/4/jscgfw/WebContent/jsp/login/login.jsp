@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=UTF-8" %>
     <!DOCTYPE html>  
     <html>  
@@ -16,7 +15,7 @@
 	<link rel="stylesheet" href="../../css/animated-bg.css"> <!-- Resource style -->
 	<title>登录</title>
 	
-	  <script type="text/javascript">  
+	  <script type="text/javascript">   
             function myfunction()  
             {  
                 if(document.getElementById("gonghao").value=='')  
@@ -29,7 +28,7 @@
                 {  
                     alert("请输入密码！");  
                 
-                    return false;                     
+                    return false;
                 }  
               
                       

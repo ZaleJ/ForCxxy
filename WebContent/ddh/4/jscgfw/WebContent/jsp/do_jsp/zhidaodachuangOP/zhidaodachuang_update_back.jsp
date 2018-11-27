@@ -38,7 +38,7 @@ try
 	
 	
 	
-	
+	String ID = request.getParameter("ID");
   String beizhu=request.getParameter("beizhu");
 
   String xiangmumingcheng = request.getParameter("xiangmumingcheng");
@@ -58,46 +58,47 @@ try
 	String zhidaojiaoshijibie = request.getParameter("zhidaojiaoshijibie");
 	
 //Integer.parseInt(zuoyecishu)
-   String ins_sql = "UPDATE  zhidaodachuang SET xiangmujibie=?, xuantilaiyuan=?, xiangmuzhuangkuang=?, jietidengji=?, "+
+   String ins_sql = "UPDATE  zhidaodachuang SET xiangmumingcheng=?, xiangmujibie=?, xuantilaiyuan=?, xiangmuzhuangkuang=?, jietidengji=?, "+
    "xueshengnianji=?, xiangmuyingxiang=?, beizhu=?, xueshengrenshu=? , zhidaojiaoshirenshu=?, zhidaojiaoshijibie=? , fufen=? "+
-   "WHERE xiangmumingcheng=? ";
+   "WHERE ID=? ";
   
   
 
    ps=con.prepareStatement(ins_sql);
 
- ps.setString(1,xiangmujibie);
- ps.setString(2,xuantilaiyuan);
- ps.setString(3,xiangmuzhuangkuang);
+ ps.setString(1,xiangmumingcheng);
+ ps.setString(2,xiangmujibie);
+ ps.setString(3,xuantilaiyuan);
+ ps.setString(4,xiangmuzhuangkuang);
  
-ps.setString(4,jietidengji );
+ps.setString(5,jietidengji );
  
-ps.setString(5,xueshengnianji);
- ps.setString(6,xiangmuyingxiang);
- ps.setString(7,beizhu);
- ps.setString(8,xueshengrenshu);
- ps.setString(9,zhidaojiaoshirenshu);
- ps.setString(10,zhidaojiaoshijibie);
+ps.setString(6,xueshengnianji);
+ ps.setString(7,xiangmuyingxiang);
+ ps.setString(8,beizhu);
+ ps.setString(9,xueshengrenshu);
+ ps.setString(10,zhidaojiaoshirenshu);
+ ps.setString(11,zhidaojiaoshijibie);
  
  
  
  if(xiangmujibie.equals("省级") && jietidengji.equals("优秀")){
-		ps.setString(11, Province2);
+		ps.setString(12, Province2);
 	}else if(xiangmujibie.equals("省级") && (jietidengji.equals("良好") || jietidengji.equals("中等"))){
-		ps.setString(11, Province3);
+		ps.setString(12, Province3);
 	}else if(xiangmujibie.equals("院级") && jietidengji.equals("优秀")){
-		ps.setString(11, College2);
+		ps.setString(12, College2);
 	}else if(xiangmujibie.equals("院级") && (jietidengji.equals("良好") || jietidengji.equals("中等"))){
-		ps.setString(11, College3);
+		ps.setString(12, College3);
 	}else{
-		ps.setString(11, "0");
+		ps.setString(12, "0");
 	}
  
  
  
  
  
- ps.setString(12,xiangmumingcheng);
+ ps.setString(13,ID);
 
    
    	ps.executeUpdate();

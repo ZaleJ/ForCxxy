@@ -60,7 +60,7 @@
    
    <th class="text-center">姓名</th> <th class="text-center">性别</th> <th class="text-center">出生年月</th>
      <th class="text-center">学历</th> <th class="text-center">学位</th> <th class="text-center">职称</th>
-      <th class="text-center">职务</th> <th class="text-center">政治面貌</th> <th class="text-center">签订合同</th>
+      <th class="text-center">职务</th> <th class="text-center">政治面貌</th> 
        <th class="text-center">工号</th> <th class="text-center">所在系部</th> <th class="text-center">进校时间</th>
         <th class="text-center">高校工龄</th> <th class="text-center">本科毕业学校</th> <th class="text-center">获得最高学历的院校或机构</th>
         
@@ -130,7 +130,7 @@ while (rs.next())
    {
  xingming = rs.getString("xingming");
    xingbie = rs.getString("xingbie");
-    chushengnianyue = rs.getString("chushengnianyue");
+    chushengnianyue = rs.getString("chushengnianyue"); 
    xueli = rs.getString("xueli");
     xuewei = rs.getString("xuewei");
    zhicheng = rs.getString("zhicheng");
@@ -159,7 +159,7 @@ while (rs.next())
 		<td class="text-center"><%=chushengnianyue%></td>	<td class="text-center"><%=xueli%></td>
 			<td class="text-center"><%=xuewei%></td><td class="text-center"><%=zhicheng%></td>
 				<td class="text-center"><%=zhiwu%></td>	<td class="text-center"><%=zhengzhimianmao%></td>
-					<td class="text-center"><%= qiandinghetongqingkuang%></td>	<td class="text-center"><%=gonghao%></td>
+						<td class="text-center"><%=gonghao%></td>
 						<td class="text-center"><%=suozaixibu%></td>	<td class="text-center"><%=jinxiaoshijian%></td>
 							<td class="text-center"><%=gaoxiaogongling%></td>	<td class="text-center"><%=benkebiyexuexiao%></td>
 									<td class="text-center"><%= huodezuigaoxuelideyuanxiaohuojigou%></td><td class="text-center"><%=huodezuigaoxueweideyuanxiaohuojigou%></td>
@@ -219,7 +219,7 @@ while (rs.next())
     <td>
 		性别：
 			<select name="xingbie">
-				<option value="男" selected>男</option>
+				<option value="男" >男</option>
 				<option value="女">女</option>
 			</select>
 	 </td>
@@ -228,9 +228,15 @@ while (rs.next())
  <tr>
     <td>
 		出生年月：
+		<%if(chushengnianyue != null){ %>
 			<input type='text' name="csny_y" size="4"  value="<%=chushengnianyue.substring(0,4)%>"/>年
 			<input type='text' name="csny_m" size="2"  value="<%=chushengnianyue.substring(5,7)%>"/>月
 			<input type='text' name="csny_d" size="2"  value="<%=chushengnianyue.substring(8,10)%>"/>日
+			<%} else{%>
+			<input type='text' name="csny_y" size="4"  value=""/>年
+			<input type='text' name="csny_m" size="2"  value=""/>月
+			<input type='text' name="csny_d" size="2"  value=""/>日
+			<%} %>
 			
 	</td>
   </tr>
@@ -239,10 +245,9 @@ while (rs.next())
     <td>
 		学历：
 			<select name="xueli">
-				<option value="本科" selected>本科</option>
+				<option value="<%=xueli %>"><%=xueli %></option>
+				<option value="本科" >本科</option>
 				<option value="研究生">研究生</option>
-				<option value="硕士">硕士</option>
-				<option value="博士">博士</option>
 			</select>
 	</td>
   </tr>
@@ -250,7 +255,8 @@ while (rs.next())
     <td>
 		学位：
 			<select name="xuewei">
-				<option value="学士" selected>学士</option>
+				<option value="<%=xuewei %>"><%=xuewei %></option>
+				<option value="学士">学士</option>
 				<option value="硕士">硕士</option>
 				<option value="博士">博士</option>
 			</select>
@@ -259,7 +265,13 @@ while (rs.next())
   <tr>
     <td>
 		职称：
-			<input type='text' name="zhicheng" size="20" value="<%=zhicheng %>"/>
+			<select name="zhicheng">
+				<option value="<%=zhicheng %>"><%=zhicheng %></option>
+				<option value="助教">助教</option>
+				<option value="讲师">讲师</option>
+				<option value="副教授">副教授</option>
+				<option value="教授">教授</option>
+			</select>
 	</td>
   </tr>
   <tr>
@@ -280,9 +292,12 @@ while (rs.next())
   </tr>
   <tr>
     <td>
-		签订合同情况：
-			<input type="radio" name="situation" value="是">是
-			<input type="radio" name="situation" value="否" >否
+<!-- 		签订合同情况： -->
+<!-- 			<select name="qiandinghetongqingkuang"> -->
+<%-- 				<option value="<%=qiandinghetongqingkuang %>"><%=qiandinghetongqingkuang %></option> --%>
+<!-- 				<option value="是" >是</option> -->
+<!-- 				<option value="否" >否</option> -->
+<!-- 			</select> -->
 	</td>
   </tr>
   <tr>
@@ -300,15 +315,31 @@ while (rs.next())
   <tr>
     <td>
 		所在系部：
-			<input type='text' name="suozaixibu" size="15"  value="<%=suozaixibu%>"    /> 
+			<select name="suozaixibu">
+				<option value="<%=suozaixibu %>"><%=suozaixibu %></option>
+				<option value="电子与计算机工程学院" >电子与计算机工程学院</option>
+				<option value="建筑与艺术设计学院">建筑与艺术设计学院</option>
+				<option value="土木与交通工程学院">土木与交通工程学院</option>
+				<option value="机械与电气工程学院">机械与电气工程学院</option>
+				<option value="制药与化学工程学院">制药与化学工程学院</option>
+				<option value="经济管理学院">经济管理学院</option>
+				<option value="基础部">基础部</option>
+			</select>
 	</td>
   </tr>
   <tr>
     <td>
 		进校时间：
+		<%if(jinxiaoshijian != null){ %>
 			<input type='text' name="jxsj_y" size="8"  value="<%=jinxiaoshijian.substring(0,4)%>"/>年
 			<input type='text' name="jxsj_m" size="8"  value="<%=jinxiaoshijian.substring(5,7)%>"/>月
 			<input type='text' name="jxsj_d" size="8" value="<%=jinxiaoshijian.substring(8,10)%>" />日
+			
+			<%}else{ %>
+			<input type='text' name="jxsj_y" size="8"  value=""/>年
+			<input type='text' name="jxsj_m" size="8"  value=""/>月
+			<input type='text' name="jxsj_d" size="8" value="" />日
+			<%} %>
 	</td>
   </tr>
   <tr>
@@ -368,13 +399,35 @@ finally
   <tr>
     <td>
 		工程实践经历：
-				<input type="radio" name="experience" value="来自企业" >来自企业&nbsp;
-				<input type="radio" name="experience" value="有行业企业经历5年以上" >有行业企业经历5年以上&nbsp;
-				<input type="radio" name="experience" value="有行业企业经历3年以上" >有行业企业经历3年以上&nbsp;
-				<input type="radio" name="experience" value="有行业企业经历1年以上" >有行业企业经历1年以上&nbsp;
-				<input type="radio" name="experience" value="有短期行业企业工程能力培养经历" >有短期行业企业工程能力培养经历&nbsp;
-				<input type="radio" name="experience" value="answerF" >指导学生实践<input type='text' name="number" size="1" />轮以上&nbsp;
-				<input type="radio" name="experience" value="answerG" >其他：<input type='text' name="experience" size="20" />
+<!-- 				<input type="radio" name="experience" value="来自企业" >来自企业&nbsp; -->
+<!-- 				<input type="radio" name="experience" value="有行业企业经历5年以上" >有行业企业经历5年以上&nbsp; -->
+<!-- 				<input type="radio" name="experience" value="有行业企业经历3年以上" >有行业企业经历3年以上&nbsp; -->
+<!-- 				<input type="radio" name="experience" value="有行业企业经历1年以上" >有行业企业经历1年以上&nbsp; -->
+<!-- 				<input type="radio" name="experience" value="有短期行业企业工程能力培养经历" >有短期行业企业工程能力培养经历&nbsp; -->
+<!-- 				<input type="radio" name="experience" value="answerF" >指导学生实践<input type='text' name="number" size="1" />轮以上&nbsp; -->
+<!-- 				<input type="radio" name="experience" value="answerG" >其他：<input type='text' name="experience" size="20" /> -->
+
+<select name="gongchengshijianjingli">
+	<option value="来自企业">来自企业</option>
+	<option value="有行业企业经历5年以上" >有行业企业经历5年以上</option>
+	<option value="有行业企业经历3年以上">有行业企业经历3年以上</option>
+	<option value="有行业企业经历1年以上">有行业企业经历1年以上</option>
+	<option value="有短期行业企业工程能力培养经历">有短期行业企业工程能力培养经历</option>
+</select>
+
+
+<br></br>
+
+指导学生实践<select name="zhidaoshijian">
+	<option value="0">0</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+
+</select>轮及以上
+
+
+
 	
 	</td>
 		

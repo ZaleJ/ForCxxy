@@ -80,11 +80,11 @@
   
 
    
-   String ketimingcheng=request.getParameter("p");
-   String sea_sql = "select * from ketangjiaoxue  where kechengmingcheng=? ";
+   String ID=request.getParameter("p");
+   String sea_sql = "select * from ketangjiaoxue  where ID=? ";
 
    ps = con.prepareStatement(sea_sql);
-  ps.setString(1, ketimingcheng);
+  ps.setString(1, ID);
    rs = ps.executeQuery();
 
 // 	out.println(Gonghao);
@@ -121,15 +121,22 @@ while (rs.next())
                
               %>
              
-      <form name="jbqk"   action="../../do_jsp/ketangjiaoxue_update_back.jsp" method="get"   >                                           
+      <form name="jbqk"   action="../../do_jsp/ketangjiaoxueOP/ketangjiaoxue_update_back.jsp" method="get"   >                                           
       <tbody> 
                                                  
 		
 		<tr>
 		
-		<td >课程名称：<input style="border:0; background-color:#F9F9F9" type="text"  name="kechengmingcheng" value="<%=kechengmingcheng%>"></td>
+		<td >课程ID（不可修改）：<input readonly="true" style="border:0; background-color:#F9F9F9" type="text"  name="ID" value="<%=ID%>"></td>
+		
 				
 		</tr>
+		
+		<tr>
+		<td >课程名称：<input style="border:0; background-color:#F9F9F9" type="text"  name="kechengmingcheng" value="<%=kechengmingcheng%>"></td>
+		</tr>
+		
+		
 		<tr>
 		
 		<td >课程性质:<input style="border:0; background-color:#F9F9F9" type="text"  name="kechengxingzhi" value="<%=kechengxingzhi%>"></td>
